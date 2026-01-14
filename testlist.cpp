@@ -29,6 +29,8 @@ int main(int argc, char *argv[]) {
             second = value;
         if (i == initial_size)
             last = value;
+        
+
     }
 
     // print and test methods for list1

@@ -85,7 +85,9 @@ int IntList::max() const {
 // returns average (arithmetic mean) of all values, or
 // 0 if list is empty
 double IntList::average() const {
-    return sum()/count(); // REPLACE THIS NON-SOLUTION
+    int cnt = count();
+    if (cnt == 0) return 0.0;
+    return sum() / cnt;
 }
 
 // inserts value as new node at beginning of list
@@ -132,13 +134,39 @@ int IntList::count() const {
 
 //Assignment operator should copy the list from the source
 //to this list, deleting/replacing any existing nodes
-IntList& IntList::operator=(const IntList& source){
-    //IMPLEMENT
+IntList& IntList::operator=(const IntList& source) {
+    if (this == &source) {
+        return *this;
+    }
+
     Node* curr = head;
-    while(source != nullptr)
+    while (curr != nullptr) {
+        Node* next = curr->next;
+        delete curr;
+        curr = next;
+    }
+    head = nullptr;
+    tail = nullptr;
+
+    Node* src = source.head;
+    while (src != nullptr) {
+        Node* newNode = new Node;
+        newNode->info = src->info;
+        newNode->next = nullptr;
+
+        if (head == nullptr) {      // empty list
+            head = tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+
+        src = src->next;
+    }
 
     return *this;
 }
+
 
 // constructor sets up empty list
 IntList::IntList(){ 

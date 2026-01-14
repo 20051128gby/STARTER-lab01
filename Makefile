@@ -20,3 +20,5 @@ intlist.o: intlist.cpp
 
 clean:
 	rm -f testrest testlist *.o
+
+
