@@ -87,7 +87,7 @@ int IntList::max() const {
 double IntList::average() const {
     int cnt = count();
     if (cnt == 0) return 0.0;
-    return sum() / cnt;
+    return static_cast<double>(sum()) / cnt;
 }
 
 // inserts value as new node at beginning of list
